@@ -1,4 +1,4 @@
-import { createContext, userReducer } from "react";
+import { createContext, useReducer } from "react";
 
 const INITIAL_STATE = {
   city: undefined,
@@ -24,7 +24,8 @@ const SearchReducer = (state, action) => {
 };
 
 export const SearchContextProvider = ({ children }) => {
-  const [state, dispatch] = userReducer(SearchReducer, INITIAL_STATE);
+  const [state, dispatch] = useReducer(SearchReducer, INITIAL_STATE);
+
   return (
     <SearchContext.Provider
       value={{
