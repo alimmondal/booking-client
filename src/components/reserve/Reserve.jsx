@@ -11,18 +11,31 @@ function Reserve({ setOpen, hotelId }) {
   const [selectedRooms, setSelectedRooms] = useState([]);
 
   const { data, loading, error } = useFetch(
-    `http://localhost:5000/api/hotels/room/${hotelId}`
+    `http://localhost:8800/api/hotels/room/${hotelId}`
   );
   const { dates } = useContext(SearchContext);
 
-  const getDatesInRange = (start, end) => {
-    const date = new Date(start).getTime();
+  const getDatesInRange = (startDate, endDate) => {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
 
-    let list = [];
-    while (data <= end) {
-      list.push(new Date(date));
-      date.setaDate(date.getDate() + 1);
+    const date = new Date(start.getTime());
+
+    let dates = [];
+    while (date <= end) {
+      dates.push(new Date(date).getTime());
+      date.setDate(date.getDate() + 1);
     }
+    return dates;
+  };
+  //   console.log(getDatesInRange(dates[0].startDate, dates[0].endDate));
+  const alldates = getDatesInRange(dates[0].startDate, dates[0].endDate);
+
+  const isAvailable = (roomNumber) => {
+    const isFound = roomNumber.unavailableDates.some((date) =>
+      alldates.includes(new Date(date).getTime())
+    );
+    return !isFound;
   };
 
   const handleSelect = (e) => {
@@ -42,9 +55,12 @@ function Reserve({ setOpen, hotelId }) {
     try {
       await Promise.all(
         selectedRooms.map((roomId) => {
-          const res = axios.put(`/rooms/availability/${roomId}`, {
-            // dates: alldates,
-          });
+          const res = axios.put(
+            `http://localhost:8800/api/rooms/availability/${roomId}`,
+            {
+              dates: alldates,
+            }
+          );
           return res.data;
         })
       );
@@ -74,13 +90,13 @@ function Reserve({ setOpen, hotelId }) {
             </div>
             <div className="rSelectRooms">
               {item.roomNumbers.map((roomNumber) => (
-                <div className="room">
+                <div className="room" key={roomNumber._id}>
                   <label>{roomNumber.number}</label>
                   <input
                     type="checkbox"
                     value={roomNumber._id}
                     onChange={handleSelect}
-                    // disabled={!isAvailable(roomNumber)}
+                    disabled={!isAvailable(roomNumber)}
                   />
                 </div>
               ))}

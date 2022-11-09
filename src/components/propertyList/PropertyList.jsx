@@ -4,7 +4,7 @@ import "./propertyList.css";
 
 const PropertyList = () => {
   const { data, loading, error } = useFetch(
-    "http://localhost:5000/api/hotels/countByType"
+    "http://localhost:8800/api/hotels/countByType"
   );
   // console.log("Type", data);
   // console.log(error);

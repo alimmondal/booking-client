@@ -27,7 +27,7 @@ export default function Hotel() {
   const [openModal, setOpenModal] = useState(false);
 
   const { data, loading, error } = useFetch(
-    `http://localhost:5000/api/hotels/find/${id}`
+    `http://localhost:8800/api/hotels/find/${id}`
   );
   // console.log("details ", error);
   const { user } = useContext(AuthContext);
