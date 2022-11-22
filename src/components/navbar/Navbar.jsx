@@ -10,7 +10,7 @@ export default function Navbar() {
     <div className="navbar">
       <div className="navContainer">
         <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
-          <span className="logo">lamabooking</span>
+          <span className="logo">Asmbooking</span>
         </Link>
 
         {user ? (

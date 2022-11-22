@@ -97,7 +97,7 @@ export default function Header({ type }) {
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
                 <input
                   type="text"
-                  placeholder="Where are you going"
+                  placeholder="Where? Search by city"
                   className="headerSearchInput"
                   onChange={(e) => setDestination(e.target.value)}
                 />

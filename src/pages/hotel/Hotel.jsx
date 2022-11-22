@@ -29,7 +29,7 @@ export default function Hotel() {
   const { data, loading, error } = useFetch(
     `http://localhost:8800/api/hotels/find/${id}`
   );
-  // console.log("details ", error);
+  // console.log("data ", data);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -92,7 +92,7 @@ export default function Hotel() {
               />
               <div className="sliderWrapper">
                 <img
-                  src={data.photo[slideNumber]}
+                  src={data.photos[slideNumber]}
                   alt=""
                   className="sliderImg"
                 />
@@ -119,7 +119,7 @@ export default function Hotel() {
               free airport taxi
             </span>
             <div className="hotelImages">
-              {data.photo?.map((photo, i) => (
+              {data.photos?.map((photo, i) => (
                 <div className="hotelImageWrapper" key={i}>
                   <img
                     onClick={() => handleOpen(i)}
