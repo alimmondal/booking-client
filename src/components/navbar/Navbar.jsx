@@ -5,6 +5,7 @@ import "./navbar.css";
 
 export default function Navbar() {
   const { user } = useContext(AuthContext);
+  // console.log("user", user);
 
   return (
     <div className="navbar">
@@ -18,7 +19,9 @@ export default function Navbar() {
         ) : (
           <div className="navItem">
             <button className="navButton">Register</button>
-            <button className="navButton">Login</button>
+            <Link to="/login">
+              <button className="navButton">Login</button>
+            </Link>
           </div>
         )}
       </div>

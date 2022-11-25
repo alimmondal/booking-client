@@ -97,7 +97,7 @@ export default function Header({ type }) {
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
                 <input
                   type="text"
-                  placeholder="Where? Search by city"
+                  placeholder="Search by city"
                   className="headerSearchInput"
                   onChange={(e) => setDestination(e.target.value)}
                 />
@@ -131,7 +131,7 @@ export default function Header({ type }) {
                 <FontAwesomeIcon icon={faPerson} className="headerIcon" />
                 <span
                   onClick={() => setOpenOptions(!openOptions)}
-                  className="headerSearchText"
+                  className="headerSearchTexts"
                 >{`${options.adult} adult . ${options.children} children . ${options.room} room`}</span>
                 {openOptions && (
                   <div className="options">

@@ -21,3 +21,15 @@
 .fListItem:hover {
   font-weight: bold;
 }
+.fText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and(max-width: 480px) {
+  .fLists {
+    display: flex;
+    display: none;
+  }
+}

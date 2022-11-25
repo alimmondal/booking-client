@@ -37,3 +37,16 @@
 .fpRating {
   font-size: 12px;
 }
+
+@media (max-width: 480px) {
+  .fp {
+    flex-direction: column;
+    gap: 30px;
+    margin: 0 10px;
+  }
+  .fpImg {
+    width: 95%;
+    height: 250px;
+    object-fit: cover;
+  }
+}

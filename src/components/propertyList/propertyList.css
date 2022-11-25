@@ -24,3 +24,15 @@
   font-size: 14px;
   font-weight: 300;
 }
+
+@media (max-width: 480px) {
+  .pList {
+    flex-direction: column;
+    margin: 0 10px;
+  }
+  .pListImg {
+    width: 95%;
+    height: 200px;
+    object-fit: cover;
+  }
+}

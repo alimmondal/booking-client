@@ -27,3 +27,15 @@
   bottom: 20px;
   left: 20px;
 }
+
+@media (max-width: 480px) {
+  .featured {
+    flex-direction: column;
+    margin: 0 10px;
+  }
+  .featuredImg {
+    width: 95%;
+    height: 95%;
+    object-fit: cover;
+  }
+}

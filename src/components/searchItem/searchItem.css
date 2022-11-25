@@ -94,3 +94,13 @@
 .siCheckButton:hover {
   background-color: #003580;
 }
+
+@media (max-width: 480px) {
+  .searchItem {
+    flex-direction: column;
+    margin: 10px;
+  }
+  .siDetailTexts {
+    text-align: left;
+  }
+}

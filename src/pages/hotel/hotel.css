@@ -134,3 +134,29 @@
   color: lightgray;
   cursor: pointer;
 }
+
+@media (max-width: 480px) {
+  .hotelDetails {
+    flex-direction: column;
+    margin: 10px;
+  }
+  .siDetailTexts {
+    text-align: left;
+  }
+  .hotelImages {
+    margin: 0 10px;
+  }
+
+  .sliderImg {
+    width: 98%;
+    height: 50vh;
+  }
+  .close {
+    top: 10px;
+    right: 10px;
+  }
+  .arrow {
+    margin: 3px;
+    font-size: 15px;
+  }
+}

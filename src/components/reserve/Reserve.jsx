@@ -1,18 +1,19 @@
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../../context/SearchContext";
 import useFetch from "../../hooks/useFetch";
 import "./reserve.css";
 
-function Reserve({ setOpen, hotelId }) {
+const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
-
   const { data, loading, error } = useFetch(
     `http://localhost:8800/api/hotels/room/${hotelId}`
   );
+  console.log("data", data);
   const { dates } = useContext(SearchContext);
 
   const getDatesInRange = (startDate, endDate) => {
@@ -21,20 +22,23 @@ function Reserve({ setOpen, hotelId }) {
 
     const date = new Date(start.getTime());
 
-    let dates = [];
+    const dates = [];
+
     while (date <= end) {
       dates.push(new Date(date).getTime());
       date.setDate(date.getDate() + 1);
     }
+
     return dates;
   };
-  //   console.log(getDatesInRange(dates[0].startDate, dates[0].endDate));
+
   const alldates = getDatesInRange(dates[0].startDate, dates[0].endDate);
 
   const isAvailable = (roomNumber) => {
     const isFound = roomNumber.unavailableDates.some((date) =>
       alldates.includes(new Date(date).getTime())
     );
+
     return !isFound;
   };
 
@@ -48,7 +52,6 @@ function Reserve({ setOpen, hotelId }) {
     );
   };
 
-  //   console.log(selectedRooms);
   const navigate = useNavigate();
 
   const handleClick = async () => {
@@ -68,7 +71,6 @@ function Reserve({ setOpen, hotelId }) {
       navigate("/");
     } catch (err) {}
   };
-
   return (
     <div className="reserve">
       <div className="rContainer">
@@ -79,19 +81,19 @@ function Reserve({ setOpen, hotelId }) {
         />
         <span>Select your rooms:</span>
         {data.map((item) => (
-          <div className="rItem" key={item._id}>
+          <div className="rItem" key={item?._id}>
             <div className="rItemInfo">
-              <div className="rTitle">{item.title}</div>
-              <div className="rDesc">{item.desc}</div>
+              <div className="rTitle">{item?.title}</div>
+              <div className="rDesc">{item?.desc}</div>
               <div className="rMax">
-                Max people: <b>{item.maxPeople}</b>
+                Max people: <b>{item?.maxPeople}</b>
               </div>
-              <div className="rPrice">{item.price}</div>
+              <div className="rPrice">{item?.price}</div>
             </div>
             <div className="rSelectRooms">
-              {item.roomNumbers.map((roomNumber) => (
-                <div className="room" key={roomNumber._id}>
-                  <label>{roomNumber.number}</label>
+              {item?.roomNumbers?.map((roomNumber) => (
+                <div className="room">
+                  <label>{roomNumber?.number}</label>
                   <input
                     type="checkbox"
                     value={roomNumber._id}
@@ -109,6 +111,6 @@ function Reserve({ setOpen, hotelId }) {
       </div>
     </div>
   );
-}
+};
 
 export default Reserve;
