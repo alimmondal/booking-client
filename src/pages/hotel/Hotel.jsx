@@ -75,7 +75,7 @@ export default function Hotel() {
       <Navbar />
       <Header type="list" />
       {loading ? (
-        "loading.."
+        "loading..."
       ) : (
         <div className="hotelContainer">
           {open && (
